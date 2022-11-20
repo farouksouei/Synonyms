@@ -11,7 +11,7 @@ function App() {
     );
     const data = await response.json();
     console.log(data);
-    setWordList(data.map((item: any) => item.word));
+    setWordList(data.map((item: any) => [item.word,item.score]));
   };
   return <div className="App">
     <form onSubmit={handleFetchSynonyms}>
@@ -29,7 +29,9 @@ function App() {
       <h2>Synonyms</h2>
       <ul>
         {wordList.map((item, index) => (
-          <li className="list-item" key={index}>{item}</li>
+          <li className="list-item" key={index}>
+            {item[0]} with a score match of : {item[1]} points
+          </li>
         ))}
       </ul>
     </div>
